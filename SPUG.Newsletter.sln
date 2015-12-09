@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SPUG.Newsletter", "src\SPUG.Newsletter\SPUG.Newsletter.fsproj", "{D55B4F4B-1EAC-46F3-A02A-09A0127AD05B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{32D8DFDD-C569-4276-81CF-6EB453AC4D7F}"
+	ProjectSection(SolutionItems) = preProject
+		build.cmd = build.cmd
+		build.fsx = build.fsx
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D55B4F4B-1EAC-46F3-A02A-09A0127AD05B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D55B4F4B-1EAC-46F3-A02A-09A0127AD05B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D55B4F4B-1EAC-46F3-A02A-09A0127AD05B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D55B4F4B-1EAC-46F3-A02A-09A0127AD05B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

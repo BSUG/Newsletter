@@ -1,0 +1,8 @@
+source https://nuget.org/api/v2
+
+nuget FSharp.Core
+nuget TweetSharp-Unofficial
+
+group Build
+	source https://nuget.org/api/v2
+	nuget FAKE
