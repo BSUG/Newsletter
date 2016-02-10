@@ -1,0 +1,211 @@
+﻿{
+   "digestTitle":"Episode 46 – December 18, 2015",
+   "titleImg":"http://belarussharepoint.files.wordpress.com/2014/08/bspug-logo-big.png",
+   "news":{  
+      "title":"news",
+      "articles":[  
+         {   
+            "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-shp.png",
+            "title":"December 2015 CU for SharePoint 2013 is available for download",
+            "url":"https://blogs.technet.microsoft.com/stefan_gossner/2015/12/08/december-2015-cu-for-sharepoint-2013-is-available-for-download/",
+            "text":"The product group released the December 2015 Cumulative Update for the SharePoint 2013 product family."
+        },       
+        {    
+            "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-shp.png", 
+            "title":"Integrate Reporting Services into SharePoint 2016", 
+            "url":"http://blogs.msdn.com/b/sqlrsteamblog/archive/2015/12/10/integrate-reporting-services-into-sharepoint-2016.aspx", 
+            "text":"With the recent release of SharePoint Server 2016 Beta 2, SQL Server 2016 CTP 3.1 enables you to integrate SQL Server business intelligence and reporting into SharePoint 2016. Here you will find a whitepaper and download links to help you get up and running." 
+        },
+        {
+           "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-office365.png", 
+            "title":"Office 365 Groups now supports eDiscovery, litigation hold, dynamic membership and more!",
+            "url":"https://blogs.office.com/2015/12/09/office-365-groups-now-supports-ediscovery-litigation-hold-dynamic-membership-and-more/",
+            "text":"In this article you will find what new and awesome features are coming to Office 365 Groups."
+        },
+        {
+          "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-office365.png", 
+            "title":"Office 365 Developer Patterns and Practices – December 2015 release",
+            "url":"http://dev.office.com/blogs/PnP-Dec-2015-Release",
+            "text":"Office 365 Developer Patterns and Practices (PnP) December 2015 release is out with new contributions from community for the community. This post contains all the details related on what was included with the release and what else has been happening in the PnP world during the past month."  
+
+        },
+        {
+          "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-win.png", 
+            "title":"AngularJS 2 beta has been released",
+            "url":"http://angularjs.blogspot.com.by/",
+            "text":"Read this article to know what \"beta\" means, what comes next, and how to upgrade from Angular 1." 
+
+        },
+         {    
+            "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-win.png", 
+            "title":"Free Pluralsight 6 Month Subscription", 
+            "url":"http://absolute-sharepoint.com/2015/12/free-pluralsight-6-month-subscription.html", 
+            "text":"As many of you know, Pluralsight is one, if not the best source of on demand video learning. With over 4500 courses, and expert instructors it’s hard not to see the value of having access to such a great library. Until December 31st, You can get a free 6 months subscription to the full Pluralsight Library in order to learn those skills in the new year! If you see this blog post after December 31st , you should still be able to get a 3 month subscription!" 
+        }   
+      ]
+   },
+   "tools":{  
+      "title":"Tools",
+      "articles":[    
+      { 
+            "title":"Top 10 Free SharePoint Developer Tools",
+            "url":"https://sharepoint.protiviti.com/blog/Lists/Posts/Post.aspx?ID=131",
+            "text":"A list of 10 useful tool that you might find useful."
+      },  
+      { 
+            "title":"",
+            "url":"",
+            "text":""
+      }
+      ]
+   },
+   "novices":{  
+      "title":"SharePoint 101 (Novice Level)",
+      "articles":[  
+         {  
+            "title":"SharePoint for IT pros",
+            "url":"https://technet.microsoft.com/en-us/office/dn788776.aspx",
+            "text":"Training, documents & downloads - check out these SharePoint resources today. "
+         },
+        {  
+            "title":"TechNet Virtual Labs",
+            "url":"https://technet.microsoft.com/en-us/virtuallabs",
+            "text":"Immerse yourself in a virtual hands-on lab and experience the product first hand, or try our guided experiences, and click through a tour of the various product features."
+         }
+      ]
+   },
+   "videos":{  
+      "width":"30%",
+      "title":"videos & presentations",
+      "articles":[  
+         { 
+            "image":"https://belarussharepoint.files.wordpress.com/2015/12/ep47_1.png", 
+            "title":"Office Dev PnP PnP Web Cast – Provisioning engine and reference solution with AngularJS",
+            "url":"https://channel9.msdn.com/blogs/OfficeDevPnP/PnP-Web-Cast-Provisioning-engine-and-reference-solution-with-AngularJS",
+            "text":"New Office365dev PnP web cast on site provisioning reference solution with AngularJS UI implementation"
+         },
+        {
+            "image":"https://belarussharepoint.files.wordpress.com/2015/12/ep47_2.png",
+            "title":"Office Dev PnP Web Cast – Branding SharePoint using add-in model techniques",
+            "url":"http://dev.office.com/blogs/branding-sharepoint-using-add-in-model-techniques",
+            "text":"This web past covers the different recommendations and options for using custom branding in SharePoint sites at Office 365 or in on-premises."
+        },
+         {  
+            "image":"https://belarussharepoint.files.wordpress.com/2015/12/ep-46-2.png",
+            "title":"Deep Dive into Office 365 APIs for SharePoint Sites Service",
+            "url":"https://channel9.msdn.com/Blogs/Office-365-Dev/Deep-Dive-into-Office-365-APIs-for-SharePoint-Sites-Service",
+            "text":"Look at scenarios available when using the SharePoint Sites service in the Office 365 APIs."
+         },
+         {  
+            "image":"https://belarussharepoint.files.wordpress.com/2015/12/ep47_3.png",
+            "title":"Hybrid Infrastructure Automation with Azure Resource Manager Templates",
+            "url":"https://channel9.msdn.com/Shows/Mechanics/Hybrid-Infrastructure-Automation-with-Azure-Resource-Manager-Templates",
+            "text":"In this video Corey Sanders, lead engineer for Azure compute, demonstrates how  Azure Resource Manager templates can set you free from the headache of setting up a hybrid infrastructure for SharePoint."
+         },
+         {  
+            "image":"https://belarussharepoint.files.wordpress.com/2015/12/ep47_6.png",
+            "title":"Office 365 Advanced eDiscovery",
+            "url":"https://www.youtube.com/watch?v=yPEGF3Auw_M&feature=youtu.be&t=31s",
+            "text":"This demo features the new Office 365 Advanced eDiscovery (formerly Equivio Analytics) capability in Office 365 E5."
+         }
+        ]
+   },
+   "blogs":{  
+      "title":"blogs & tutorials",
+      "articles":[    
+       {   
+            "title":"What's deprecated or removed from SharePoint Server 2016 Beta 2",
+            "url":"https://msdn.microsoft.com/en-us/library/mt346112(v=office.16).aspx",
+            "text":"Learn about the features and functionality that are deprecated or removed in SharePoint Server 2016 Beta 2"
+      },
+      {
+        "title":"SharePoint 2016: Six Deprecated Features You Need to Know About",
+        "url":"http://sharepointpromag.com/sharepoint/sharepoint-2016-six-deprecated-features-you-need-know-about",
+        "text":"There are certainly many enhancements to SharePoint in the new 2016 version, this article by SPCAF team gives an overview which of the features have been deprecated or removed."
+      },
+             {
+        "title":"How and why is the community customizing SharePoint?",
+        "url":"https://www.spcaf.com/blog/how-and-why-is-the-community-customizing-sharepoint/",
+        "text":"Some statistics on the kinds of customizations and tools used for them are provided in this article."
+      },
+       {   
+            "title":"Architecture models for SharePoint provider hosted add-ins in on-premises",
+            "url":"http://blogs.msdn.com/b/vesku/archive/2015/12/08/architecture-models-for-sharepoint-provider-hosted-add-ins-in-on-premises.aspx",
+            "text":"Now that the SharePoint 2016 is also arriving relatively soon, we are getting more and more questions around the on-premises setup around the SharePoint add-in/app model. Target of this blog post is to address some of the most common questions around the infrastructural setup for on-premises and to clarify what are the options from the infrastructure perspective. "
+      },
+      {   
+            "title":"Office365 Sway versus new Blog experience",
+            "url":"https://yos365.wordpress.com/2015/12/15/office365-sway-versus-new-blog-experience-the-match/",
+            "text":"In his post Patrick Guimonet, MVP shares a comparison of two similar technologies introduced in Office 365 which both can be used to quickly create a site."
+      },
+       {   
+            "title":"Minroles under the hood",
+            "url":"http://blog.sharedove.com/adisjugo/index.php/2015/12/10/minroles-under-the-hood/",
+            "text":"Mintroles is a new concept inside SharePoint 2016. You need another web front end? No problem, just deploy another server with the Front-End minrole, and voila, there you go – no need to think about services which should run on that server, Microsoft is doing that sort of thinking for you now. In this article  Adis Jugo shares some useful info about this cool feature."
+      },
+        {
+        "title":"Configure DLP in SharePoint 2016 Step by Step Tutorial",
+        "url":"http://absolute-sharepoint.com/2015/12/configure-dlp-in-sharepoint-2016-step-by-step-tutorial.html",
+        "text":"As part of the release of SharePoint 2016, and included since Beta 2, Microsoft included Data Loss Prevention (DLP) Capabilities in SharePoint Server. This blog by Vlad Catrinescu provides step-by-step instructions how to configure DPL."
+      },        
+      {   
+            "title":"Moving from SPServices to Rest, Part 6: Converting UpdateListItems to REST",
+            "url":"http://www.itunity.com/article/moving-spservices-rest-part-6-converting-updatelistitems-rest-2908",
+            "text":"While the majority of calls using SOAP with SPServices use GetListItems to get items from lists, changing data with UpdateListItems is probably a close second. In this case, we’re altering data based on some user action. In a way, it’s like repainting your car. The shape and structure of the car stays the same, but you make it look better with new paint. New data can be like that – after all, the list or library itself doesn’t change."
+      },
+      {   
+            "title":"Accessing Compliance Center using PowerShell in Office 365",
+            "url":"http://blogs.msdn.com/b/cdndevs/archive/2015/11/26/accessing-compliance-center-using-powershell-in-office-365.aspx",
+            "text":"In the following blog post are described PowerShell cmdlets that can be used for accessing Compliance Center and setting up a Compliance Search for SharePoint Online sites."
+      }
+      ]
+   },
+   "events":{  
+      "width":"33%",
+      "title":"upcoming events & webinars",      
+      "articles":[
+        {  
+            "image":"http://belarussharepoint.files.wordpress.com/2014/08/event.png",
+            "title":"",
+            "url":"",
+            "text":""
+         }
+
+      ]
+   },
+   "people":{    
+      "width":"25%",
+      "title":"People who worked on this episode",        
+      "links":[  
+        {   
+            "image":"https://belarussharepoint.files.wordpress.com/2015/12/natallia.png",                      
+            "url":"https://www.linkedin.com/in/msnataly", 
+            "name":"Natallia",    
+            "surname":"Makarevich"    
+         }, 
+        {   
+            "image":"https://belarussharepoint.files.wordpress.com/2015/12/w0lya.png",                      
+            "url":"http://www.linkedin.com/in/volhas", 
+            "name":"Volha",    
+            "surname":"Samusik"    
+         }, 
+        {   
+            "image":"https://belarussharepoint.files.wordpress.com/2015/01/dr_cat.png",                      
+            "url":"http://www.linkedin.com/in/drogozhny", 
+            "name":"Dmitry",    
+            "surname":"Rogozhny"    
+         }, 
+        {   
+            "image":"https://belarussharepoint.files.wordpress.com/2015/12/kalasok.png",                      
+            "url":"http://www.linkedin.com/pub/natallia-kalasouskaya/24/a20/407", 
+            "name":"Natallia",    
+            "surname":"Kalasouskaya"    
+         } 
+      ]
+   },
+   "humor":{    
+      "title":"Have a good end of the week!",
+      "image":"https://belarussharepoint.files.wordpress.com/2015/12/ep47_hm.jpg"
+   }
+
+}

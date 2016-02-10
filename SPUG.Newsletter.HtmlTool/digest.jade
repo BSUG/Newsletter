@@ -1,0 +1,127 @@
+table(width="760" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse; border:none; border-spacing:0;border:0;")
+    tbody
+    tr
+        td(style="border:0px")
+            table(border="0" cellpadding="0" cellspacing="0" width="760" style="border-collapse: collapse;border:0;")
+                tbody
+                    tr
+                        td(style="padding:0;border:0px")
+                            img(border="0" src= titleImg style="border:0; height:auto; line-height:100%; margin:0; outline:none; padding:0; text-decoration:none")
+                    tr
+                        td(style="padding: 25px 0;background-color: #E0EEF8;border:0px")
+                            h1(style="margin:0;line-height:1.5;text-align:center;font-size:26px;text-transform: uppercase;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 400;")= digestTitle
+
+
+    tr
+        td(style="background-color: #ffffff; padding: 20px 40px;border:0px")
+            p(style="text-align: center; text-transform: uppercase; color: #000000; font-size: 26px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 600;margin-bottom:0;")= news.title
+            table(border="0" cellpadding="0" cellspacing="0" width="680" style="border-collapse: collapse;border:0;")
+                each topic in news.articles
+                    tr
+                        td(width="20%" style="vertical-align: top;border:0px")
+                            img(src= topic.image alt="cool pic")
+
+                        td(width="80%" style="vertical-align: top; padding-top: 15px; padding-bottom: 20px;border:0px")
+                            a(href= topic.url style=" color: #1d80d3; font-size: 20px; text-decoration: none;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 300;border:0px;")= topic.title
+                            p(style="color: #898e9c; font-size: 13px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 400;margin-top: 0;margin-bottom:0;")= topic.text
+
+
+    tr
+        td(style="background-color: #f8f8f8; padding: 20px 40px;border:0;")
+            p(style="text-align: center; text-transform: uppercase; color: #000000; font-size: 26px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 600;margin-bottom:0;")= videos.title
+            table(border="0" cellpadding="0" cellspacing="0" width="680" style="border-collapse: collapse;border:0;")
+                tr
+                    each topic in videos.articles
+                        td(width=videos.width style="vertical-align: top;padding: 0 1.5%;border:0;")
+                            div
+                                a(href=topic.url)
+                                    img(width="200" src= topic.image alt="cool pic")
+                            div
+                                a(href= topic.url style="color: #1d80d3; font-size: 20px; text-decoration: none;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 300;border:0;")= topic.title
+                                p(style="color: #898e9c; font-size: 13px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 400;margin-top: 0;margin-bottom:0;")= topic.text
+
+
+    tr
+        td(style="background-color: #ffffff; padding: 20px 40px;border:0;")
+            p(style="text-align: center; text-transform: uppercase; color: #000000; font-size: 26px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 600;margin-bottom:0;")= blogs.title
+            table(border="0" cellpadding="0" cellspacing="0" width="680" style="border-collapse: collapse;border:0;")
+                each topic in blogs.articles
+                    tr
+                        td(style="vertical-align: top;padding-bottom: 20px;border:0;")
+                            a(href= topic.url style=" color: #1d80d3; font-size: 20px; text-decoration: none;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 300;border:0px;")= topic.title
+                            p(style="color: #898e9c; font-size: 13px; margin-top: 0;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 400;margin-bottom:0;")= topic.text
+
+
+    tr
+        td(style="background-color: #ffffff; padding: 20px 40px;border:0;")
+            p(style="text-align: center; text-transform: uppercase; color: #000000; font-size: 26px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 600;margin-bottom:0;")= tools.title
+            table(border="0" cellpadding="0" cellspacing="0" width="680" style="border-collapse: collapse;border:0;")
+                each topic in tools.articles
+                    tr
+                        td(style="vertical-align: top;padding-bottom: 20px;border:0;")
+                            a(href= topic.url style=" color: #1d80d3; font-size: 20px; text-decoration: none;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 300;border:0px;")= topic.title
+                            p(style="color: #898e9c; font-size: 13px; margin-top: 0;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 400;margin-bottom:0;")= topic.text
+
+
+    tr
+        td(style="background-color: #ffffff; padding: 20px 40px;border:0;")
+            p(style="text-align: center; text-transform: uppercase; color: #000000; font-size: 26px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 600;margin-bottom:0;")= novices.title
+            table(border="0" cellpadding="0" cellspacing="0" width="680" style="border-collapse: collapse;border:0;")
+                each topic in novices.articles
+                    tr
+                        td(style="vertical-align: top;padding-bottom: 20px;border:0;")
+                            a(href= topic.url style=" color: #1d80d3; font-size: 20px; text-decoration: none;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 300;border:0px;")= topic.title
+                            p(style="color: #898e9c; font-size: 13px; margin-top: 0;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 400;margin-bottom:0;")= topic.text
+
+
+    tr
+        td(style="background: #f8f8f8; padding: 20px 40px;border:0;")
+            p(style="text-align: center; text-transform: uppercase; color: #000000; font-size: 26px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 600;margin-bottom:0;")= events.title
+            table(border="0" cellpadding="0" cellspacing="0" width="680" style="border-collapse: collapse;border:0;")
+                tr
+                    each topic in events.articles
+                        td(width=events.width style="vertical-align: top;padding: 0 1.5%;text-align: center;border:0;")
+                            div
+                                a(href=topic.url style="border:0px;")
+                                    img(style="border:none; margin-bottom: 10px; display:inline;" src= topic.image)
+                            div
+                                a(href= topic.url style="display: block; color: #1d80d3; font-size: 20px; text-decoration: none;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 300;border:0px;")= topic.title
+                                p(style="color: #898e9c; font-size: 13px;text-align: left;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 400;margin-bottom:0;")= topic.text
+
+
+    tr
+        td(style="padding: 20px 40px;border:0;")
+            p(style="text-align: center; text-transform: uppercase; color: #000000; font-size: 26px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 600;margin-bottom:0;")= people.title
+            table(border="0" cellpadding="0" cellspacing="0" width="680" style="border-collapse: collapse;border:0;")
+                tr
+                    each person in people.links
+                        td(width=people.width style="vertical-align: top;padding: 1.5% 1.5%;text-align: left;border:0;")
+                            div
+                                a(href=person.url style="border:none")
+                                    img(style="margin-bottom: 10px;" src= person.image)
+                            div
+                                a(href= person.url style="display: block; color: #1d80d3; font-size: 20px; text-decoration: none;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 300;border:0px;")= person.name
+                            div
+                                a(href= person.url style="display: block; color: #1d80d3; font-size: 20px; text-decoration: none;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 300;border:0px;")= person.surname
+
+
+    tr        
+        td(style="padding-bottom: 30px;text-align: center;border:0;")
+            p(style="text-align: center; text-transform: uppercase; color: #000000; font-size: 26px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 600;margin-bottom:0;")=humor.title
+                div(class="article-content")
+                    img(border="0" src=humor.image)
+                p(style="text-align: center; text-transform: uppercase; color: #000000; font-size: 26px;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 600;margin-bottom:0;")="The end!"
+
+
+    tr
+        td(style="text-align: center;border:0;")
+            div="Best regards,"
+                br
+                strong="Belarus SharePoint Community,"
+                br
+                |Newsletter Founders.
+                br
+                br
+                a(style="display: block; color: #1d80d3; font-size: 20px; text-decoration: none;font-family: 'Segoe UI', Tahoma, Helvetiva, Arial, sans-serif;font-weight: 300;border:0px;" href="http://on.fb.me/1q1Amrn")
+                    img(border="0" src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png" alt="facebook logo" width="30px" height="30px" style="display:inline;")
+                    |Follow us on Facebook

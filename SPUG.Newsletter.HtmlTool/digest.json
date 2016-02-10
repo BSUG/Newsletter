@@ -1,0 +1,174 @@
+﻿{  
+   "digestTitle":"Episode 25 – February 12, 2015",
+   "titleImg":"http://belarussharepoint.files.wordpress.com/2014/08/bspug-logo-big.png",
+   "news":{  
+      "title":"news",
+      "articles":[  
+         {   
+            "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-office365.png",
+            "title":"Share your feedback for SharePoint Server 2016 on UserVoice!",
+            "url":"http://sharepoint.uservoice.com/forums/282887-customer-feedback-for-sharepoint-server",
+            "text":"Microsoft has opened up a UserVoice to receive customer feedback on what you would like to see in SharePoint Server 2016. Go to the UserVoice site to provide feedback. Vote here to share your customer's feedback for SharePoint Server: http://sharepoint.uservoice.com/forums/282887-customer-feedback-for-sharepoint-server."
+        } ,
+         {   
+            "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-office365.png",
+            "title":"SharePoint 2013 February 2015 Public Updates",
+            "url":"http://thesharepointfarm.com/2015/02/sharepoint-2013-february-2015-public-updates/",
+            "text":"The SharePoint 2013 February 2015 Public Updates have been released. Updates include Cumulative Update for SharePoint Server 2013  (KB2920801), Project Server 2013 (KB2920796), Office Web Apps Server 2013 (KB2956101) and Office 2013 Cumulative Updates."
+        } ,   
+         {   
+            "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-office365.png",
+            "title":"The 2015 Microsoft Product Roadmap",
+            "url":"http://rcpmag.com/articles/2011/02/01/the-2011-microsoft-product-roadmap.aspx",
+            "text":"Windows 10 is the obvious headliner of this year's roadmap, but Microsoft has many other key releases coming down the pipeline, including touch-enabled Office, on-premises SharePoint and Exchange, and test versions of the next iteration of Windows Server. Here's a look at what's to come, and when."
+        } ,
+         {   
+               "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-office365.png",
+               "title":"InfoPath is back in SharePoint 2016 & FoSL vNext is dead!",
+               "url":"http://absolute-sharepoint.com/2015/02/infopath-back-sharepoint-2016-fosl-vnext-dead.html",
+               "text":"The SharePoint team at Microsoft made a few interesting changes on their blog about the future of Forms on SharePoint Lists (FoSL). InfoPath will work in SharePoint 2016."
+           } ,
+         {
+            "title":"Office 365 Developer Patterns and Practices: February 2015 Updates!",
+            "url":"https://github.com/OfficeDev/PnP/wiki/Monthly-Update-2015-February",
+            "text":"The Office 365 Developer Patterns and Practices project was announced at the end of July 2014 and there has been tremendous interest for the project since! This wiki page is collecting the highlights from the past month."
+         },
+         {
+            "title":"Office 365 news round-up",
+            "url":"http://blogs.office.com/2015/02/06/office-365-news-round-14/",
+            "text":"During the past couple of weeks, Microsoft have made several big announcements. Here you will find a round-up of the key items related to Office 365."
+         },
+        {   
+            "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-office365.png",
+            "title":"Customer Feedback for SharePoint Server",
+            "url":"http://sharepoint.uservoice.com/forums/282887-customer-feedback-for-sharepoint-server",
+            "text":"Welcome to the SharePoint feedback and suggestions site!"
+        } 
+      ]
+   },
+   "tools":{  
+      "title":"Tools",
+      "articles":[  
+      {   
+            "title":"Learn about SharePoint 2016",
+            "url":"http://blogs.technet.com/b/stefan_gossner/archive/2015/02/04/info-about-sharepoint-2016.aspx",
+            "text":"If you would like to get first information about SharePoint 2016, this blog lists articles and sessions that you can start with."
+      },
+      { 
+            "title":"Quickly Migrate SharePoint Path-based to Host-named Site Collections",
+            "url":"http://thesharepointfarm.com/2015/02/quickly-migrate-sharepoint-path-based-host-named-site-collections/",
+            "text":"The February 2015 Public Update introduced a change to quickly allow you to migrate a Path-based Site Collection to a Host-named Site Collection. This PowerShell script demonstrates how to use this feature."
+      },
+      {
+         "title":"SharePoint module for managing  lists, items and files in SharePoint Online using PowerShell",
+         "url":"https://gallery.technet.microsoft.com/scriptcenter/SharePoint-Module-for-5ecbbcf0",
+         "text":"The module is a massive work comprising over 2000 lines of code and 44 SharePoint Online cmdlets for managing lists, list columns, list items and files."
+      },
+      {
+         "title":"SPLaunch (PowerShell remoting automation)",
+         "url":"https://splaunch.codeplex.com/",
+         "text":"Manage many SharePoint servers? Check out this tool, it's a huge time saver. Less RDP, more remote Posh."
+      },
+      {  
+            "title":"SharePoint Cloud Migration Assistant (Public Preview) ",
+            "url":"1drv.ms/1CK0NuU ",
+            "text":"Considering a hybrid SharePoint / Office 365 hybrid environment? This tool shared by Bill Baer may be worth giving it a try."
+      }
+      ]
+   },
+   "novices":{  
+      "title":"SharePoint 101 (Novice Level)",
+      "articles":[  
+         {  
+            "title":"",
+            "url":"",
+            "text":""
+         }
+      ]
+   },
+   "videos":{  
+      "title":"videos & presentations",
+      "articles":[  
+         {  
+            "image":"",
+            "title":"",
+            "url":"",
+            "text":""
+         }
+        ]
+   },
+   "blogs":{  
+      "title":"blogs & tutorials",
+      "articles":[        
+        { 
+            "title":"Who’s Who in the SharePoint and Office 365 World at Microsoft HQ",
+            "url":"http://www.collabshow.com/2015/01/08/whos-who-in-the-sharepoint-and-office-365-world/",
+            "text":"Have you ever heard about Satya Nadella, Jeff Teper or Chris Jones? You definitely should. In case if not, this blog post is about key people of the SharePoint world at Microsoft."
+         },
+         {
+            "title":"Configure audit settings for a site collection",
+            "url":"https://support.office.microsoft.com/en-us/article/Configure-audit-settings-for-a-site-collection-a9920c97-38c0-44f2-8bcb-4cf1e2ae22d2",
+            "text":"You can use the audit feature of Microsoft SharePoint Server 2013 to track which users have taken what actions on the sites, content types, lists, libraries, list items, and library files within your site collections. In this article you will find out how to do it."
+         },
+         {
+            "title":"Apply term sets as Global Navigation in SharePoint site using PowerShell and CSOM",
+            "url":"http://www.enjoysharepoint.com/Articles/Details/apply-term-sets-as-global-navigation-in-sharepoint-site-using-21001.aspx",
+            "text":"In this post Sambita Rath is going to explain how to apply term-sets as Global Navigation in SharePoint site using PowerShell and CSOM. "
+         },
+         { 
+            "title":"Change the way you see SharePoint collaboration in 2015",
+            "url":"http://en.share-gate.com/blog/ready-for-change-sharepoint-2013-office-365",
+            "text":"Are they rewriting Office collaboration from scratch? In this blog post Benjamin Niaulin shares his observations in SharePoint collaboration since the SharePoint conference last march."
+         },
+         { 
+            "title":"Back from the dead, SharePoint 2016 helped by Office 365",
+            "url":"http://en.share-gate.com/blog/sharepoint-2016-hybrid-office-365",
+            "text":"One more post by Benjamin Niaulin, SharePoint MVP, is about what he thinks of Julia's post on the \"Evolution of SharePoint\" (see the Episode #24) and what we can expect from SharePoint 2016." 
+         },
+         {  
+            "title":"Transforming SharePoint customizations to app model",
+            "url":"https://github.com/OfficeDev/TrainingContent/tree/master/O3658%20-%20Transforming%20SharePoint%20customizations%20to%20app%20model",
+            "text":"New SharePoint app model training package based on Office 365 Dev Patterns and Practices available for download"
+         }
+      ]
+   },
+   "events":{  
+      "title":"upcoming events & webinars",
+      "articles":[           
+        {  
+            "image":"http://belarussharepoint.files.wordpress.com/2014/08/event.png",
+            "title":"European Sharepoint Office 365 training week",
+            "url":"http://www.sharepointeurope.com/content/european-sharepoint-office-365-training-week",
+            "text":"From 16th - 20th February join the world’s leading experts for European SharePoint & Office 365 Training Week featuring webinars, eBooks and blogs that will take your career to the next level."
+         },
+         {
+            "image":"http://belarussharepoint.files.wordpress.com/2014/08/event.png",
+            "title":"Speak in Stockholm at ESPC15!",
+            "url":"http://www.sharepointeurope.com/speakers/call-for-speakers",
+            "text":"Passionate about all things SharePoint/Office 365 related? Then we can submit to speak at #ESPC15 - registration deadline is February, 20."
+         },
+         {
+            "title":"SharePoint On-Premises Upgrades & Migrations to Office 365 - SPChat with Knut Relbe-Moe",
+            "url":"http://sharepoint-community.net/events/sharepoint-on-premises-upgrades-migrations-to-office-365-spchat",
+            "text":"Time: March 4, 2015 from 6pm to 7pmLocation: online - main chatroomWebsite or Map: http://www.sharepoint-communi…Event Type: spchat"
+         },
+         {
+            "title":"SP BIZ - Free Online Conference!",
+            "url":"http://www.spbizconf.com/",
+            "text":"June 17th 2015. FREE. Online. On-demand. On your device.8 Hours, 8 Tracks, 32 sessions. One purpose - To bring the benefits of SharePoint business expertise to your device, wherever you are. If you want to get the most out of your SharePoint platform, this is THE conference to attend. "
+         } 
+      ]
+   },
+   "footer":{  
+      "links":[  
+         {  
+            "name":"",
+            "url":""
+         },
+         {  
+            "name":"",
+            "url":""
+         }
+      ]
+   }
+}
