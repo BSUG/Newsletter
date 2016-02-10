@@ -1,0 +1,85 @@
+{
+   "digestTitle":"Episode XX – February X, 2016",
+   "titleImg":"http://belarussharepoint.files.wordpress.com/2014/08/bspug-logo-big.png",
+   "news":{  
+      "title":"news",
+      "articles":[  
+         {   
+            "image" : "https://belarussharepoint.files.wordpress.com/2014/08/news-shp.png",
+            "title":"",
+            "url":"",
+            "text":""
+        }
+      ]
+   },
+   "tools":{  
+      "title":"Tools",
+      "articles":[      
+      { 
+            "title":"",
+            "url":"",
+            "text":""
+      }
+      ]
+   },
+   "novices":{  
+      "title":"SharePoint 101 (Novice Level)",
+      "articles":[  
+         {  
+            "title":"",
+            "url":"",
+            "text":""
+         }
+      ]
+   },
+   "videos":{  
+      "width":"30%",
+      "title":"videos & presentations",
+      "articles":[  
+         {  
+            "image":"",
+            "title":"",
+            "url":"",
+            "text":""
+         }
+        ]
+   },
+   "blogs":{  
+      "title":"blogs & tutorials",
+      "articles":[        
+        {   
+            "title":"",
+            "url":"",
+            "text":""
+      }
+      ]
+   },
+   "events":{  
+      "width":"33%",
+      "title":"upcoming events & webinars",      
+      "articles":[           
+        {  
+            "image":"http://belarussharepoint.files.wordpress.com/2014/08/event.png",
+            "title":"",
+            "url":"",
+            "text":""
+         }
+      ]
+   },
+   "people":{    
+      "width":"25%",
+      "title":"People who worked on this episode",        
+      "links":[  
+        {   
+            "image":"",                      
+            "url":"", 
+            "name":"",    
+            "surname":""    
+         }
+      ]
+   },
+   "humor":{    
+      "title":"",
+      "image":""
+   }
+}
