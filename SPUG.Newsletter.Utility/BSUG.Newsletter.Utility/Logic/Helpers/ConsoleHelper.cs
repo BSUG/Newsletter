@@ -46,5 +46,20 @@ namespace BSUG.Newsletter.Utility.Logic.Helpers
 
             Console.ResetColor();
         }
+
+        /// <summary>
+        /// Display the success message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="parameters">The parameters.</param>
+        public static void Success(string message, params object[] parameters)
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+
+            Console.WriteLine(message, parameters);
+
+            Console.ResetColor();
+        }
     }
 }

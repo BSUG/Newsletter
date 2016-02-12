@@ -145,9 +145,13 @@ namespace BSUG.Newsletter.Utility.Logic
 
                 foreach (ContentItem pastEpisodeItem in pastEpisodeItems)
                 {
+                    string pastEpisodeUrl = pastEpisodeItem.Url.TrimEnd(new[] { '/' });
+
                     foreach (ContentItem episodeItem in episodeItems)
                     {
-                        if (pastEpisodeItem.Url.Equals(episodeItem.Url, StringComparison.OrdinalIgnoreCase))
+                        string episodeUrl = episodeItem.Url.TrimEnd(new[] {'/'});
+
+                        if (pastEpisodeUrl.Equals(episodeUrl, StringComparison.OrdinalIgnoreCase))
                         {
                             ConsoleHelper.Warning("Ep. {0}, Url {1}. Current episode title: {2}".PadRight(10), pastEpisode.Number, pastEpisodeItem.Url, episodeItem.Title);
                             duplicatesFound = true;
@@ -158,7 +162,7 @@ namespace BSUG.Newsletter.Utility.Logic
 
             if (!duplicatesFound)
             {
-                ConsoleHelper.Info("Yay! No duplicates found.");
+                ConsoleHelper.Success("Yay! No duplicates found.");
             }
         }
 
@@ -225,7 +229,7 @@ namespace BSUG.Newsletter.Utility.Logic
             }
             catch (ArgumentException)
             {
-                ConsoleHelper.Error("Episode with the Url: {0} not found", episodePostUrl);
+                ConsoleHelper.Warning("Episode with the Url: {0} not found", episodePostUrl);
                 episode = null;
             }
         }
