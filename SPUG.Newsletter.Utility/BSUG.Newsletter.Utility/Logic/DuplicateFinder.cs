@@ -67,8 +67,11 @@ namespace BSUG.Newsletter.Utility.Logic
             ConsoleHelper.Info("Loading current episode json file.");
             Episode lastEpisode = EpisodeHelper.GetEpisodeFromFile(_episodeJsonFilePath);
 
-            ConsoleHelper.Info("Looking for duplicates.");
-            DisplayDuplicates(lastEpisode, allEpisodes);
+            if ((lastEpisode != null) && (allEpisodes != null))
+            {
+                ConsoleHelper.Info("Looking for duplicates.");
+                DisplayDuplicates(lastEpisode, allEpisodes);
+            }
         }
 
         /// <summary>

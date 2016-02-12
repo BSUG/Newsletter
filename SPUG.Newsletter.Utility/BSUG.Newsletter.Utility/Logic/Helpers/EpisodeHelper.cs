@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-
+using System.Net.NetworkInformation;
 using Newtonsoft.Json;
 
 using BSUG.Newsletter.Utility.Entities;
@@ -74,9 +74,17 @@ namespace BSUG.Newsletter.Utility.Logic.Helpers
         public static Episode GetEpisodeFromFile(string filePath)
         {
             string fileContent = File.ReadAllText(filePath);
-            Episode episode = JsonConvert.DeserializeObject<Episode>(fileContent);
+            try
+            {
+                Episode episode = JsonConvert.DeserializeObject<Episode>(fileContent);
+                return episode;
+            }
+            catch (JsonReaderException exception)
+            {
+                ConsoleHelper.Error("There were problems while parsing episode's json file. Please check that the json is valid. Additional information: {0}", exception.Message);
+            }
 
-            return episode;
+            return null;
         }
     }
 }
