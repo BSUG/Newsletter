@@ -67,9 +67,15 @@ namespace BSUG.Newsletter.Utility.Logic
             ConsoleHelper.Info("Loading current episode json file.");
             Episode lastEpisode = EpisodeHelper.GetEpisodeFromFile(_episodeJsonFilePath);
 
+            if (lastEpisode != null)
+            {
+                ConsoleHelper.Info("Looking for duplicates in the last episode.");
+                DisplayDuplicates(lastEpisode);
+            }
+
             if ((lastEpisode != null) && (allEpisodes != null))
             {
-                ConsoleHelper.Info("Looking for duplicates.");
+                ConsoleHelper.Info("Looking for duplicates between the last and previous episodes.");
                 DisplayDuplicates(lastEpisode, allEpisodes);
             }
         }
@@ -152,12 +158,53 @@ namespace BSUG.Newsletter.Utility.Logic
 
                     foreach (ContentItem episodeItem in episodeItems)
                     {
-                        string episodeUrl = episodeItem.Url.TrimEnd(new[] {'/'});
-
-                        if (pastEpisodeUrl.Equals(episodeUrl, StringComparison.OrdinalIgnoreCase))
+                        if (!string.IsNullOrEmpty(episodeItem.Url))
                         {
-                            ConsoleHelper.Warning("Ep. {0}, Url {1}. Current episode title: {2}".PadRight(10), pastEpisode.Number, pastEpisodeItem.Url, episodeItem.Title);
-                            duplicatesFound = true;
+                            string episodeUrl = episodeItem.Url.TrimEnd(new[] {'/'});
+
+                            if (pastEpisodeUrl.Equals(episodeUrl, StringComparison.OrdinalIgnoreCase))
+                            {
+                                ConsoleHelper.Warning("Ep. {0}, Url {1}. Current episode title: {2}".PadRight(10),
+                                    pastEpisode.Number, pastEpisodeItem.Url, episodeItem.Title);
+                                duplicatesFound = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (!duplicatesFound)
+            {
+                ConsoleHelper.Success("Yay! No duplicates found.");
+            }
+        }
+
+        /// <summary>
+        /// Displays the duplicates between links in the episode, if any found.
+        /// </summary>
+        /// <param name="episode">The episode.</param>
+        private void DisplayDuplicates(Episode episode)
+        {
+            bool duplicatesFound = false;
+            List<Item> episodeItems = EpisodeHelper.GetEpisodeContentItems(episode);
+
+            foreach (ContentItem contentItem in episodeItems)
+            {
+                if (!string.IsNullOrEmpty(contentItem.Url))
+                {
+                    string url = contentItem.Url.TrimEnd(new[] {'/'});
+
+                    foreach (ContentItem ci in episodeItems)
+                    {
+                        if ((contentItem != ci) && !string.IsNullOrEmpty(contentItem.Url) && !string.IsNullOrEmpty(ci.Url))
+                        {
+                            string url2 = ci.Url.TrimEnd(new[] { '/' });
+
+                            if (url.Equals(url2, StringComparison.OrdinalIgnoreCase))
+                            {
+                                ConsoleHelper.Warning("Current episode titles: \"{0}\" and \"{1}\"", contentItem.Title, ci.Title);
+                                duplicatesFound = true;
+                            }
                         }
                     }
                 }
