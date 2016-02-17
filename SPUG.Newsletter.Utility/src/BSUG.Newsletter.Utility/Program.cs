@@ -54,8 +54,8 @@ namespace BSUG.Newsletter.Utility
 
             if (!string.IsNullOrEmpty(episodesCacheFolder) && !Directory.Exists(episodesCacheFolder))
             {
-                ConsoleHelper.Error("Folder {0} does not exist. Please create it first.", episodesCacheFolder);
-                parametersValid = false;
+                ConsoleHelper.Info("Cache folder does not exist. It will be created by the following path: {0}.", episodesCacheFolder);
+                Directory.CreateDirectory(episodesCacheFolder);
             }
 
             if (!string.IsNullOrEmpty(episodeJsonFilePath) && !File.Exists(episodeJsonFilePath))
