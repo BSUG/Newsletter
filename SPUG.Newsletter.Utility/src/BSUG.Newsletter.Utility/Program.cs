@@ -44,10 +44,11 @@ namespace BSUG.Newsletter.Utility
 
             string firstEpisodeNumberString = LoadConfigParam("firstEpisodeNumber");
             string filterLinksString = LoadConfigParam("filterLinks");
+            string stopWordsString = LoadConfigParam("stopWords");
 
             // Validate configuration parameters
             if (episodeJsonFilePath == null || episodesCacheFolder == null || episodeFileNameFormat == null ||
-                blogPostUrlFormat == null || firstEpisodeNumberString == null || filterLinksString == null)
+                blogPostUrlFormat == null || firstEpisodeNumberString == null || filterLinksString == null || stopWordsString == null)
             {
                 parametersValid = false;
             }
@@ -73,12 +74,17 @@ namespace BSUG.Newsletter.Utility
 
             if (parametersValid)
             {
-                // Parse links string into an array for better convinience.
+                // Parse links string into an array
                 string[] filterLinks = filterLinksString.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < filterLinks.Length; i++)
                     filterLinks[i] = filterLinks[i].Trim();
 
-                var duplicateFinder = new DuplicateFinder(episodeJsonFilePath, episodesCacheFolder, episodeFileNameFormat, blogPostUrlFormat, firstEpisodeNumber, filterLinks);
+                // Parse stop words string into an array
+                string[] stopWords = stopWordsString.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < stopWords.Length; i++)
+                    stopWords[i] = stopWords[i].Trim();
+
+                var duplicateFinder = new DuplicateFinder(episodeJsonFilePath, episodesCacheFolder, episodeFileNameFormat, blogPostUrlFormat, firstEpisodeNumber, filterLinks, stopWords);
                 duplicateFinder.FindDuplicates();
             }
             else

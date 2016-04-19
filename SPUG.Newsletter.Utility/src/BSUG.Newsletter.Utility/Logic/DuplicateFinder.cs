@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 
 using HtmlAgilityPack;
 
@@ -16,12 +17,19 @@ namespace BSUG.Newsletter.Utility.Logic
     /// </summary>
     public class DuplicateFinder
     {
+        #region Private variables
+
         private readonly string _episodeJsonFilePath;
         private readonly string _episodesCacheFolder;
         private readonly string _episodeFileNameFormat;
         private readonly string _blogPostUrlFormat;
         private readonly int _firstEpisodeNumber;
         private readonly string[] _filterLinks;
+        private readonly string[] _stopWords;
+
+        #endregion Private variables
+
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DuplicateFinder" /> class.
@@ -32,7 +40,8 @@ namespace BSUG.Newsletter.Utility.Logic
         /// <param name="blogPostUrlFormat">The blog post URL format.</param>
         /// <param name="firstEpisodeNumber">The first episode number.</param>
         /// <param name="filterLinks">The filter links.</param>
-        public DuplicateFinder(string episodeJsonFilePath, string episodesCacheFolder, string episodeFileNameFormat, string blogPostUrlFormat, int firstEpisodeNumber, string[] filterLinks)
+        /// <param name="stopWords">The stop words.</param>
+        public DuplicateFinder(string episodeJsonFilePath, string episodesCacheFolder, string episodeFileNameFormat, string blogPostUrlFormat, int firstEpisodeNumber, string[] filterLinks, string[] stopWords)
         {
             _episodeFileNameFormat = episodeFileNameFormat;
             _episodesCacheFolder = episodesCacheFolder;
@@ -42,6 +51,7 @@ namespace BSUG.Newsletter.Utility.Logic
             _firstEpisodeNumber = firstEpisodeNumber;
 
             _filterLinks = filterLinks;
+            _stopWords = stopWords;
         }
 
         /// <summary>
@@ -50,6 +60,8 @@ namespace BSUG.Newsletter.Utility.Logic
         private DuplicateFinder()
         {
         }
+
+        #endregion Constructors
 
         /// <summary>
         /// Finds the duplicates.
@@ -71,12 +83,15 @@ namespace BSUG.Newsletter.Utility.Logic
             {
                 ConsoleHelper.Info("Looking for duplicates in the last episode.");
                 DisplayDuplicates(lastEpisode);
-            }
 
-            if ((lastEpisode != null) && (allEpisodes != null))
-            {
-                ConsoleHelper.Info("Looking for duplicates between the last and previous episodes.");
-                DisplayDuplicates(lastEpisode, allEpisodes);
+                ConsoleHelper.Info("Looking for stop words in the last episode.");
+                DisplayStopWords(lastEpisode, _stopWords);
+
+                if (allEpisodes != null)
+                {
+                    ConsoleHelper.Info("Looking for duplicates between the last and previous episodes.");
+                    DisplayDuplicates(lastEpisode, allEpisodes);
+                }
             }
         }
 
@@ -154,13 +169,13 @@ namespace BSUG.Newsletter.Utility.Logic
 
                 foreach (ContentItem pastEpisodeItem in pastEpisodeItems)
                 {
-                    string pastEpisodeUrl = pastEpisodeItem.Url.TrimEnd(new[] { '/' });
+                    string pastEpisodeUrl = GetCleanUrl(pastEpisodeItem.Url.TrimEnd('/'));
 
                     foreach (ContentItem episodeItem in episodeItems)
                     {
                         if (!string.IsNullOrEmpty(episodeItem.Url))
                         {
-                            string episodeUrl = episodeItem.Url.TrimEnd(new[] {'/'});
+                            string episodeUrl = GetCleanUrl(episodeItem.Url.TrimEnd('/'));
 
                             if (pastEpisodeUrl.Equals(episodeUrl, StringComparison.OrdinalIgnoreCase))
                             {
@@ -192,13 +207,13 @@ namespace BSUG.Newsletter.Utility.Logic
             {
                 if (!string.IsNullOrEmpty(contentItem.Url))
                 {
-                    string url = contentItem.Url.TrimEnd(new[] {'/'});
+                    string url = GetCleanUrl(contentItem.Url.TrimEnd('/'));
 
                     foreach (ContentItem ci in episodeItems)
                     {
                         if ((contentItem != ci) && !string.IsNullOrEmpty(contentItem.Url) && !string.IsNullOrEmpty(ci.Url))
                         {
-                            string url2 = ci.Url.TrimEnd(new[] { '/' });
+                            string url2 = GetCleanUrl(ci.Url.TrimEnd('/'));
 
                             if (url.Equals(url2, StringComparison.OrdinalIgnoreCase))
                             {
@@ -213,6 +228,51 @@ namespace BSUG.Newsletter.Utility.Logic
             if (!duplicatesFound)
             {
                 ConsoleHelper.Success("Yay! No duplicates found.");
+            }
+        }
+
+        /// <summary>
+        /// Displays possible stop words in the episode.
+        /// </summary>
+        /// <param name="episode">The last episode.</param>
+        /// <param name="stopWords">The stop words.</param>
+        private void DisplayStopWords(Episode episode, string[] stopWords)
+        {
+            List<Item> episodeItems = EpisodeHelper.GetEpisodeContentItems(episode);
+            string regexExpression = string.Empty;
+
+            for (int i = 0; i < stopWords.Length; i++)
+            {
+                regexExpression += stopWords[i];
+                if (i != stopWords.Length - 1)
+                {
+                    regexExpression += "|";
+                }
+            }
+
+            regexExpression = $@"\b({regexExpression})\b";
+
+            foreach (ContentItem contentItem in episodeItems)
+            {
+                FindStopWords("Title", contentItem.Title, regexExpression);
+                FindStopWords("Text", contentItem.Text, regexExpression);
+            }
+        }
+
+        private static void FindStopWords(string sectionName, string source, string regexExpression)
+        {
+            Match match = Regex.Match(source, regexExpression, RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            List<string> stopWordsFound = new List<string>();
+
+            while (match.Success)
+            {
+                stopWordsFound.Add(match.Value);
+                match = match.NextMatch();
+            }
+
+            if (stopWordsFound.Count != 0)
+            {
+                ConsoleHelper.Warning($"Please check for stop words \"{string.Join(", ", stopWordsFound)}\" in {sectionName}: {source}.");
             }
         }
 
@@ -259,7 +319,7 @@ namespace BSUG.Newsletter.Utility.Logic
                 {
                     string blogLink = link.GetAttributeValue("href", string.Empty);
 
-                    blogLink = RemoveAdsUrlParams(blogLink);
+                    blogLink = GetCleanUrl(blogLink);
 
                     if (!linksList.Contains(blogLink))
                         linksList.Add(blogLink);
@@ -285,6 +345,16 @@ namespace BSUG.Newsletter.Utility.Logic
         }
 
         /// <summary>
+        /// Gets the URL without additional parameters and ads parameters.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
+        private string GetCleanUrl(string url)
+        {
+            return RemoveAdditionalParams(RemoveAdsUrlParams(url));
+        }
+
+        /// <summary>
         /// Removes the ads URL parameters.
         /// </summary>
         /// <param name="url">The URL.</param>
@@ -293,10 +363,35 @@ namespace BSUG.Newsletter.Utility.Logic
         {
             string adsParam = "?utm_";
 
-            if (url.IndexOf(adsParam, StringComparison.OrdinalIgnoreCase) != -1)
-                url = url.Substring(0, url.IndexOf(adsParam, StringComparison.OrdinalIgnoreCase));
+            return GetSubstring(url, adsParam);
+        }
 
-            return url;
+        /// <summary>
+        /// Removes the additional parameters from the URL that go after the # symbol.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
+        private string RemoveAdditionalParams(string url)
+        {
+            string additionalParam = "#";
+
+            return GetSubstring(url, additionalParam);
+        }
+
+        /// <summary>
+        /// Returns the substring of the specified string that ends with the specified string to find.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="stringToFind">The string to find.</param>
+        /// <returns></returns>
+        private string GetSubstring(string source, string stringToFind)
+        {
+            int index = source.IndexOf(stringToFind, StringComparison.OrdinalIgnoreCase);
+
+            if (index != -1)
+                source = source.Substring(0, index);
+
+            return source;
         }
 
         /// <summary>
