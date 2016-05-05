@@ -17,7 +17,9 @@ let key       = ConfigurationManager.AppSettings.["consumerKey"]
 let secret    = ConfigurationManager.AppSettings.["consumerSecret"]
 let queries   = ConfigurationManager.AppSettings.["Queries"].Split([|';'|])
 let minRetweetCount = Int32.Parse(ConfigurationManager.AppSettings.["MinRetweetCount"])
+let participants   = ConfigurationManager.AppSettings.["Participants"].Split([|';'|])
 #endif
+
 
 
 // ------------ Twitter authentication ---------------------
@@ -59,14 +61,13 @@ let getTweets query =
             else
                 []
         else
-            let lastTweet = results |> Seq.minBy (fun x->x.Id)
+            let lastTweet = results |> Seq.minBy (fun x -> x.Id)
             if (not maxId.HasValue || lastTweet.Id < maxId.Value)
                 then results |> List.append (collect (Nullable(lastTweet.Id)) 1)
                 else results
     collect (Nullable()) 1 |> List.rev
 
 let urlRegexp = Regex("((mailto\:|(news|(ht|f)tp(s?))\://){1}\S+)", RegexOptions.IgnoreCase)
-
 let filterUniqLinks (tweets: TwitterStatus list) =
     let hash = new System.Collections.Generic.HashSet<string>();
     tweets |> List.fold
@@ -124,13 +125,38 @@ let getGroupKey (date:DateTime) =
     let week = calendar.GetWeekOfYear(date.AddDays(dayDelta), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)
     (week, (if day = 0 then 7 else day), date.DayOfWeek)
 
-// Save tweets to files
-filteredTweets
-|> Seq.groupBy (fun x-> getGroupKey x.CreatedDate)
-|> Seq.iter (fun ((week,day,dw),tweets) ->
-    let fileName = sprintf "Tweets__Week%d__Day%d_%A.html" week day dw
-    printTweetsInHtml fileName (Seq.toList tweets)
-)
+if (filteredTweets.Length > 0) then
+    let printTweetsToFolder (name:string) (tweets: TwitterStatus list) = 
+        printfn "Saving %d tweets for %s in folder..." tweets.Length name
+        if not ( System.IO.Directory.Exists name) then 
+            System.IO.Directory.CreateDirectory name |> ignore
+        tweets 
+        |> Seq.groupBy (fun x-> getGroupKey x.CreatedDate)
+        |> Seq.iter (fun ((week,day,dw),tweets) ->
+            let fileName = sprintf "Tweets__Week%d__Day%d_%A.html" week day dw
+            printTweetsInHtml (name + @"\" + fileName) (Seq.toList tweets)
+        )
+        
+    let chunk =  filteredTweets.Length / participants.Length
+    let rest = filteredTweets.Length % chunk
+
+    //Function to save tweets in equal chunks.
+    let groupByParticipants name (tweets: TwitterStatus list) step =
+        let toSkip = step * chunk
+        let tweetsForOne = tweets |> Seq.skip toSkip |> Seq.take chunk |> Seq.toList
+        printTweetsToFolder name tweetsForOne
+
+    //Main tweets portion to each participant.
+    participants 
+    |> Array.iteri(fun i name -> groupByParticipants name filteredTweets i)
+    
+    let restTweets = if rest <> 0 then filteredTweets |> Seq.rev |> Seq.take rest else Seq.empty
+
+    //The rest of the tweets (mod) are devided between all participants.
+    Seq.iter2 (fun (tweet:TwitterStatus) name -> 
+        printfn "Impartible tweet with id %A goes to %s" tweet.Id name
+        printTweetsInHtml "Tweets__Impartible_Tweet.html" (List.init 1 ( fun i -> tweet))
+        ) restTweets participants
 
 [<EntryPoint>]
 let main argv =
