@@ -83,10 +83,12 @@ let filterUniqLinks (tweets: TwitterStatus list) =
                       t :: acc)
         [] |> List.rev
 
+let startDate = DateTime.Now - TimeSpan.FromDays(7.0)
 let allTweets =
     List.ofArray queries
     |> List.map getTweets
     |> List.concat
+    |> List.filter(fun x-> x.CreatedDate > startDate)
 
 let filteredTweets =
     allTweets
@@ -118,45 +120,19 @@ let printTweetsInHtml filename (tweets: TwitterStatus list) =
     let html = sprintf "<html><head><script>function remove(id){return (elem=document.getElementById(id)).parentNode.removeChild(elem);}</script></head><body>%s</body></html>" rows
     System.IO.File.WriteAllText(filename, html)
 
-let calendar = CultureInfo.CurrentCulture.Calendar
-let getGroupKey (date:DateTime) =
-    let day  = calendar.GetDayOfWeek(date) |> int
-    let dayDelta = (4 - (if day = 0 then 7 else day)) |> float
-    let week = calendar.GetWeekOfYear(date.AddDays(dayDelta), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)
-    (week, (if day = 0 then 7 else day), date.DayOfWeek)
+let rec split length (xs: list<'T>) =
+  [ yield List.truncate length xs
+    if xs.Length > length then
+        yield! split length (List.skip length xs) ]
 
-if (filteredTweets.Length > 0) then
-    let printTweetsToFolder (name:string) (tweets: TwitterStatus list) = 
-        printfn "Saving %d tweets for %s in folder..." tweets.Length name
-        if not ( System.IO.Directory.Exists name) then 
-            System.IO.Directory.CreateDirectory name |> ignore
-        tweets 
-        |> Seq.groupBy (fun x-> getGroupKey x.CreatedDate)
-        |> Seq.iter (fun ((week,day,dw),tweets) ->
-            let fileName = sprintf "Tweets__Week%d__Day%d_%A.html" week day dw
-            printTweetsInHtml (name + @"\" + fileName) (Seq.toList tweets)
-        )
-        
-    let chunk =  filteredTweets.Length / participants.Length
-    let rest = filteredTweets.Length % chunk
-
-    //Function to save tweets in equal chunks.
-    let groupByParticipants name (tweets: TwitterStatus list) step =
-        let toSkip = step * chunk
-        let tweetsForOne = tweets |> Seq.skip toSkip |> Seq.take chunk |> Seq.toList
-        printTweetsToFolder name tweetsForOne
-
-    //Main tweets portion to each participant.
-    participants 
-    |> Array.iteri(fun i name -> groupByParticipants name filteredTweets i)
-    
-    let restTweets = if rest <> 0 then filteredTweets |> Seq.rev |> Seq.take rest else Seq.empty
-
-    //The rest of the tweets (mod) are devided between all participants.
-    Seq.iter2 (fun (tweet:TwitterStatus) name -> 
-        printfn "Impartible tweet with id %A goes to %s" tweet.Id name
-        printTweetsInHtml "Tweets__Impartible_Tweet.html" (List.init 1 ( fun i -> tweet))
-        ) restTweets participants
+filteredTweets
+|> split ((filteredTweets.Length + participants.Length - 1) / participants.Length) // Chunk size
+|> List.zip (List.ofArray participants)
+|> List.filter (fun (_,tweets) -> tweets.Length > 0)
+|> List.iter (fun (name, tweetsForUser: TwitterStatus list) ->
+    let fileName = sprintf "Tweets_for_%s__StartingFrom_%s.html" name (startDate.ToString("yyyy_MM_dd"))
+    printTweetsInHtml fileName tweetsForUser
+)
 
 [<EntryPoint>]
 let main argv =
