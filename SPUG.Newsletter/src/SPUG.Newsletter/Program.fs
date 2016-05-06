@@ -17,7 +17,9 @@ let key       = ConfigurationManager.AppSettings.["consumerKey"]
 let secret    = ConfigurationManager.AppSettings.["consumerSecret"]
 let queries   = ConfigurationManager.AppSettings.["Queries"].Split([|';'|])
 let minRetweetCount = Int32.Parse(ConfigurationManager.AppSettings.["MinRetweetCount"])
+let participants   = ConfigurationManager.AppSettings.["Participants"].Split([|';'|])
 #endif
+
 
 
 // ------------ Twitter authentication ---------------------
@@ -59,14 +61,13 @@ let getTweets query =
             else
                 []
         else
-            let lastTweet = results |> Seq.minBy (fun x->x.Id)
+            let lastTweet = results |> Seq.minBy (fun x -> x.Id)
             if (not maxId.HasValue || lastTweet.Id < maxId.Value)
                 then results |> List.append (collect (Nullable(lastTweet.Id)) 1)
                 else results
     collect (Nullable()) 1 |> List.rev
 
 let urlRegexp = Regex("((mailto\:|(news|(ht|f)tp(s?))\://){1}\S+)", RegexOptions.IgnoreCase)
-
 let filterUniqLinks (tweets: TwitterStatus list) =
     let hash = new System.Collections.Generic.HashSet<string>();
     tweets |> List.fold
@@ -82,10 +83,12 @@ let filterUniqLinks (tweets: TwitterStatus list) =
                       t :: acc)
         [] |> List.rev
 
+let startDate = DateTime.Now - TimeSpan.FromDays(7.0)
 let allTweets =
     List.ofArray queries
     |> List.map getTweets
     |> List.concat
+    |> List.filter(fun x-> x.CreatedDate > startDate)
 
 let filteredTweets =
     allTweets
@@ -117,19 +120,24 @@ let printTweetsInHtml filename (tweets: TwitterStatus list) =
     let html = sprintf "<html><head><script>function remove(id){return (elem=document.getElementById(id)).parentNode.removeChild(elem);}</script></head><body>%s</body></html>" rows
     System.IO.File.WriteAllText(filename, html)
 
-let calendar = CultureInfo.CurrentCulture.Calendar
-let getGroupKey (date:DateTime) =
-    let day  = calendar.GetDayOfWeek(date) |> int
-    let dayDelta = (4 - (if day = 0 then 7 else day)) |> float
-    let week = calendar.GetWeekOfYear(date.AddDays(dayDelta), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)
-    (week, (if day = 0 then 7 else day), date.DayOfWeek)
+let rec split length (xs: list<'T>) =
+  [ yield List.truncate length xs
+    if xs.Length > length then
+        yield! split length (List.skip length xs) ]
 
-// Save tweets to files
+//Optional function to use folders.
+let printTweetsInHtmlToFolders fileName tweetsForUser name =
+    if not ( System.IO.Directory.Exists name) then 
+        System.IO.Directory.CreateDirectory name |> ignore
+    printTweetsInHtml (sprintf @"%s\%s" name fileName) tweetsForUser
+
 filteredTweets
-|> Seq.groupBy (fun x-> getGroupKey x.CreatedDate)
-|> Seq.iter (fun ((week,day,dw),tweets) ->
-    let fileName = sprintf "Tweets__Week%d__Day%d_%A.html" week day dw
-    printTweetsInHtml fileName (Seq.toList tweets)
+|> split ((filteredTweets.Length + participants.Length - 1) / participants.Length) // Chunk size
+|> List.zip (List.ofArray participants)
+|> List.filter (fun (_,tweets) -> tweets.Length > 0)
+|> List.iter (fun (name, tweetsForUser: TwitterStatus list) ->
+    let fileName = sprintf "Tweets_for_%s__StartingFrom_%s.html" name (startDate.ToString("yyyy_MM_dd"))
+    printTweetsInHtml fileName tweetsForUser
 )
 
 [<EntryPoint>]
