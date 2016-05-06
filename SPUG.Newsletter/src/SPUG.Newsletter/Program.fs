@@ -125,6 +125,12 @@ let rec split length (xs: list<'T>) =
     if xs.Length > length then
         yield! split length (List.skip length xs) ]
 
+//Optional function to use folders.
+let printTweetsInHtmlToFolders fileName tweetsForUser name =
+    if not ( System.IO.Directory.Exists name) then 
+        System.IO.Directory.CreateDirectory name |> ignore
+    printTweetsInHtml (sprintf @"%s\%s" name fileName) tweetsForUser
+
 filteredTweets
 |> split ((filteredTweets.Length + participants.Length - 1) / participants.Length) // Chunk size
 |> List.zip (List.ofArray participants)
