@@ -136,7 +136,7 @@ filteredTweets
 |> List.zip (List.ofArray participants)
 |> List.filter (fun (_,tweets) -> tweets.Length > 0)
 |> List.iter (fun (name, tweetsForUser: TwitterStatus list) ->
-    let fileName = sprintf "Tweets_for_%s__StartingFrom_%s.html" name (startDate.ToString("yyyy_MM_dd"))
+    let fileName = sprintf "Tweets_for_%s__StartingFrom_%s.html" name (tweetsForUser.[0].CreatedDate.ToString("yyyy_MM_dd"))
     printTweetsInHtml fileName tweetsForUser
 )
 
