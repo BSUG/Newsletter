@@ -1,0 +1,28 @@
+{
+  "name": "spug-newsletter-node",
+  "version": "1.0.0",
+  "description": "Collects tweets by specified tags",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env KEY='' SECRET='' USE_CACHED=False node ./dist/index.js",
+    "start-cached": "cross-env USE_CACHED=True node ./dist/index.js",
+    "build": "tsc --project ./config/tsconfig.json"
+  },
+  "author": "Dmitry Rogozhny",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/big-integer": "0.0.29",
+    "@types/node": "^7.0.5",
+    "@types/request-promise": "^4.1.33",
+    "cross-env": "^3.2.3",
+    "typescript": "^2.1.6"
+  },
+  "dependencies": {
+    "big-integer": "^1.6.17",
+    "immutable": "^3.8.1",
+    "moment": "^2.17.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  }
+}
