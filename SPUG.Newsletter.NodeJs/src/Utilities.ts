@@ -135,16 +135,17 @@ export function checkMinRetweetCount(tweets: Array<Tweet>): Array<Tweet> {
 /**
  * Renders html file using tweets provided.
  * 
- * @param {Array<Tweet>} tweets 
- * @returns {string} 
+ * @param {Array<Tweet>} tweets
+ * @returns {string}
  */
 function render(tweets: Array<Tweet>): string {
-    let tweetsByDay = groupByDates(tweets);
+    // get map of tweets grouped and sorted by date.
+    let tweetsByDay = groupByDates(tweets).sortBy((value, key) => key);
 
     let tweetsItems = "";
     let index: number = 0;
 
-    tweetsByDay.keySeq().reverse().forEach((key) => {
+    tweetsByDay.keySeq().forEach((key) => {
         tweetsItems += `<h2>${moment(key).format(DateFormat)}</h2>`;
 
         tweetsItems += `<ol class="list">`;
@@ -313,7 +314,7 @@ function render(tweets: Array<Tweet>): string {
  * @param {string} dataPath
  */
 export function saveDataFiles(tweets: Array<Tweet>, dataPath: string) {
-    let tweetsPerDay = Immutable.Map<Date, Immutable.List<Tweet>>();
+    let tweetsPerDay = Immutable.OrderedMap<Date, Immutable.List<Tweet>>();
 
     tweets.forEach((tweet) => {
         const createdDate = moment(new Date(tweet.created_at.replace("+0000 ", "") + " UTC")).utc().startOf("day").toDate();
@@ -337,7 +338,7 @@ export function saveDataFiles(tweets: Array<Tweet>, dataPath: string) {
  * @param {string} dataPath 
  */
 export function saveHtmlFiles(tweets: Array<Tweet>, reviewers: Array<string>, dataPath: string): void {
-    let tweetsPerReviewer = Immutable.Map<string, Immutable.List<Tweet>>();
+    let tweetsPerReviewer = Immutable.OrderedMap<string, Immutable.List<Tweet>>();
 
     let index = 0;
     const reviewersListSize = reviewers.length;
@@ -382,11 +383,11 @@ function sortByRetweetCountDesc(a: Tweet, b: Tweet) {
  * Returns tweets list groupped by day.
  * Created date is used.
  * 
- * @param {Array<Tweet>} tweets 
- * @returns {Immutable.Map<Date, Immutable.List<Tweet>>} 
+ * @param {Array<Tweet>} tweets
+ * @returns {Immutable.OrderedMap<Date, Immutable.List<Tweet>>}
  */
-function groupByDates(tweets: Array<Tweet>): Immutable.Map<Date, Immutable.List<Tweet>> {
-    let tweetsPerDay = Immutable.Map<Date, Immutable.List<Tweet>>();
+function groupByDates(tweets: Array<Tweet>): Immutable.OrderedMap<Date, Immutable.List<Tweet>> {
+    let tweetsPerDay = Immutable.OrderedMap<Date, Immutable.List<Tweet>>();
 
     tweets.forEach((tweet) => {
         const createdDate = moment(new Date(tweet.created_at.replace("+0000 ", "") + " UTC")).utc().startOf("day").toDate();
