@@ -254,8 +254,15 @@ namespace BSUG.Newsletter.Utility.Logic
 
             foreach (ContentItem contentItem in episodeItems)
             {
-                FindStopWords("Title", contentItem.Title, regexExpression);
-                FindStopWords("Text", contentItem.Text, regexExpression);
+                if (contentItem.Title != null)
+                {
+                    FindStopWords("Title", contentItem.Title, regexExpression);
+                }
+                
+                if (contentItem.Text != null)
+                {
+                    FindStopWords("Text", contentItem.Text, regexExpression);
+                }
             }
         }
 
