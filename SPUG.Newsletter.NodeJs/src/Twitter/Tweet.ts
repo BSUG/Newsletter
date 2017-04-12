@@ -19,6 +19,9 @@ export default class Tweet {
             display_url: string;
             indices: [number, number];
         }>;
+        hashtags: Array<{
+            text: string;
+        }>;
     };
     extended_entities: Array<{}>;
     metadata: {
