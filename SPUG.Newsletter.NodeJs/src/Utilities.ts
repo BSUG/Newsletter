@@ -133,6 +133,29 @@ export function checkMinRetweetCount(tweets: Array<Tweet>): Array<Tweet> {
 }
 
 /**
+ * Returns tweets that does not contain job offer.
+ * 
+ * @export
+ * @param {Array<Tweet>} tweets
+ * @returns {Array<Tweet>} 
+ */
+export function checkJobOffers(tweets: Array<Tweet>): Array<Tweet> {
+    let newTweets = new Array<Tweet>();
+
+    tweets.forEach((tweet) => {
+        var tags = tweet.entities.hashtags.filter((hashtag) => {
+            return hashtag.text.toLowerCase().includes("job");
+        });
+
+        if (!tags || tags.length == 0) {
+            newTweets.push(tweet);
+        }
+    });
+
+    return newTweets;
+}
+
+/**
  * Renders html file using tweets provided.
  * 
  * @param {Array<Tweet>} tweets

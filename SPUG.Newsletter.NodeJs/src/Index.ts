@@ -7,6 +7,7 @@ import {
     checkOriginalTweets,
     checkMinRetweetCount,
     checkUniqueLinks,
+    checkJobOffers,
     saveDataFiles,
     saveHtmlFiles,
     getTweetsFromFiles,
@@ -18,7 +19,8 @@ const filterFunctions: Array<(tweets: Array<Tweet>) => Array<Tweet>> = [
     sortListByRetweetCountDesc,
     checkOriginalTweets,
     checkMinRetweetCount,
-    checkUniqueLinks];
+    checkUniqueLinks,
+    checkJobOffers];
 
 // get params from the command line
 const useCachedDataString: string = process.env.USE_CACHED || "";
